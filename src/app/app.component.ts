@@ -3,50 +3,50 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, map } from 'rxjs';
 
 interface User {
-	name: string;
-	password: string;
-	profession: string;
-	id: number;
+    name: string;
+    password: string;
+    profession: string;
+    id: number;
 }
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit {
-  url = 'http://212.227.213.103';
-  breeds$: Observable<User[]>;
-  a: User[];
-  b:string[] = [];
+    url = 'http://localhost:8081';
+    breeds$: Observable<User[]>;
+    a: User[];
+    b:string[] = [];
 
-  getBreeds(): Observable<User[]> {
+    getBreeds(): Observable<User[]> {
   	return this.http.get<User[]>(this.url + '/list-users');
-  }
+    }
 
-  wow() {
+    wow() {
 	this.http.get<User[]>(this.url + '/list-users').subscribe(data => { 
-		this.a = data;
-		//console.log(data);
-		for (let k in data) { 
-			console.log(JSON.stringify(data[k])); 
-			this.b.push(JSON.stringify(data[k]));
-		} 
+	    this.a = data;
+	    //console.log(data);
+	    for (let k in data) { 
+		console.log(JSON.stringify(data[k])); 
+		this.b.push(JSON.stringify(data[k]));
+	    } 
 	} );
-  }
+    }
 
-  constructor(private http: HttpClient) {
+    constructor(private http: HttpClient) {
 	//this.breeds$ = this.getBreeds();
 	this.wow();
 	for (let i in this.a) { 
-		//console.log(i);
-		console.log(this.a[i].name); 
+	    //console.log(i);
+	    console.log(this.a[i].name); 
 	}
-  }
+    }
 
-  ngOnInit() {
+    ngOnInit() {
 
-  }
+    }
 
 }
