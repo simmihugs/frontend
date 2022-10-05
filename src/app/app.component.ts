@@ -25,12 +25,12 @@ export class AppComponent implements OnInit {
   	return this.http.get<User[]>(this.url + '/list-users');
     }
 
-    wow() {
+    getUsers() {
 	this.http.get<User[]>(this.url + '/list-users').subscribe(data => { 
 	    this.a = data;
 	    //console.log(data);
 	    for (let k in data) { 
-		console.log(JSON.stringify(data[k])); 
+		//console.log(JSON.stringify(data[k])); 
 		this.b.push(JSON.stringify(data[k]));
 	    } 
 	} );
@@ -38,11 +38,11 @@ export class AppComponent implements OnInit {
 
     constructor(private http: HttpClient) {
 	//this.breeds$ = this.getBreeds();
-	this.wow();
-	for (let i in this.a) { 
+	//this.getUsers();
+	//for (let i in this.a) { 
 	    //console.log(i);
-	    console.log(this.a[i].name); 
-	}
+	    //console.log(this.a[i].name); 
+	//}
     }
 
     ngOnInit() {
