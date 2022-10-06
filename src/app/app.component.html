@@ -1,6 +1,21 @@
-<h1>hello welt</h1>
-<button (click)="getUsers()">getUsers()</button>
-<li *ngFor="let bb of b">
-        {{ bb }}
-</li>
-  
+<h1>Restfull api test</h1>
+<button (click)="getUsers()">getUsers()</button>  
+<table>
+        <tr>
+                <td></td>
+                <td>name</td>
+                <td>password</td>
+                <td>profession</td>  
+                <td>delete</td>  
+        </tr>
+        <tr *ngFor="let user of users">
+                <td></td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.password }}</td>
+                <td>{{ user.profession }}</td>   
+                <td><button>X</button></td>       
+        </tr>
+        <tr>
+                <td><button>+</button></td>
+        </tr>
+</table>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 interface User {
     name: string;
@@ -14,35 +14,28 @@ interface User {
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
     url = 'http://localhost:8081';
-    breeds$: Observable<User[]>;
-    a: User[];
-    b:string[] = [];
+
+    //TODO: Use Observable, if it is worth it
+    //TODO What how to get content out of Observable???
+    //users$: Observable<User[]>;
+
+    users: User[] = [];
 
     getBreeds(): Observable<User[]> {
-  	return this.http.get<User[]>(this.url + '/list-users');
+  	    return this.http.get<User[]>(this.url + '/list-users');
     }
 
     getUsers() {
-	this.http.get<User[]>(this.url + '/list-users').subscribe(data => { 
-	    this.a = data;
-	    //console.log(data);
-	    for (let k in data) { 
-		//console.log(JSON.stringify(data[k])); 
-		this.b.push(JSON.stringify(data[k]));
-	    } 
-	} );
+	    this.http.get<User[]>(this.url + '/list-users').subscribe(data => { 
+	        for (let k in data) { 
+                this.users.push(data[k]);
+	        } 
+	    });
     }
 
     constructor(private http: HttpClient) {
-	//this.breeds$ = this.getBreeds();
-	//this.getUsers();
-	//for (let i in this.a) { 
-	    //console.log(i);
-	    //console.log(this.a[i].name); 
-	//}
     }
 
     ngOnInit() {
